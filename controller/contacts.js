@@ -21,7 +21,7 @@ const getAll = async (req, res, next) => {
   }
 };
 
-const getContactById = async (req, req, next) => {
+const getContactById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const contact = await service.getContact(contactId);
@@ -48,7 +48,7 @@ const addContact = async (req, res, next) => {
   }
 };
 
-const updateContact = async (req, req, next) => {
+const updateContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const { name, email, phone } = req.body;

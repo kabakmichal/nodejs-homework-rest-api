@@ -5,7 +5,7 @@ require("dotenv").config();
 const secret = process.env.SECRET;
 
 const extractJWT = passportJWT.ExtractJwt;
-const strategy = passportJWT.Strategy;
+const Strategy = passportJWT.Strategy;
 
 const params = {
   secretOrKey: secret,
@@ -17,18 +17,21 @@ passport.use(
     try {
       const user = await service.getUserById(payload.id);
       if (!user) return done(new Error("User not found"));
-      if (user) return done(null, user);
-    } catch (error) {
-      return done(error);
+      if (user) {
+        return done(null, user);
+      }
+    } catch (err) {
+      return done(err);
     }
   })
 );
 
 const auth = (req, res, next) => {
-  passport.authenticate("jwt", { session: false }, (error, user) => {
+  passport.authenticate("jwt", { session: false }, (err, user) => {
     const token = req.headers.authorization.slice(7);
-    if (token !== user.token || !user || error)
+    if (token !== user.token || !user || err) {
       return res.status(401).json({ message: "Not authorized" });
+    }
     req.user = user;
     next();
   })(req, res, next);

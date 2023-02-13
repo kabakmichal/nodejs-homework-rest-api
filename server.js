@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { createFolderNotExisting } = require("./utils/makeFolders.js");
 const { tmpDir, avatarDir } = require("./middlewares/upload.js");
 
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ const connection = mongoose.connect(uriDb, {
 
 connection
   .then(() => {
+
     app.listen(PORT, async () => {
       await createFolderNotExisting(tmpDir);
       await createFolderNotExisting(avatarDir);
@@ -28,3 +30,4 @@ connection
     console.log(`Server not running. Error message: ${err.message}`);
     process.exit(1);
   });
+

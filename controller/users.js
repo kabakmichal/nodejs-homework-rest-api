@@ -108,6 +108,7 @@ const updateSub = async (req, res, next) => {
   }
 };
 
+
 const updateAvatar = async (req, res, next) => {
   try {
     const { path: tmpPath, filename } = req.file;

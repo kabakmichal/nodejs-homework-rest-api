@@ -5,6 +5,7 @@ const { userValidate } = require("../../utils/validator.js");
 const { auth } = require("../../middlewares/authorizationJwt.js");
 const { upload } = require("../../middlewares/upload");
 
+
 const router = express.Router();
 
 router.post("/signup", validateData(userValidate), userController.register);

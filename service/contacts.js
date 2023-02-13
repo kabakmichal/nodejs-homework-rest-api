@@ -2,6 +2,7 @@ const { Contact } = require("./schemas/contacts.js");
 
 const getAll = async () => Contact.find();
 
+
 const getContact = async (contactId) => Contact.findById(contactId);
 
 const createContact = async (body) => Contact.create(body);
@@ -12,6 +13,7 @@ const update = async (contactId, fields) =>
 const removeContact = async (contactId) => Contact.findByIdAndDelete(contactId);
 
 const updateStatusContact = (contactId, body) =>
+
   Contact.findByIdAndUpdate(contactId, body, { new: true });
 
 module.exports = {

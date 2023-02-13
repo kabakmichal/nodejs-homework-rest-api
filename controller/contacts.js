@@ -4,6 +4,7 @@ const getAll = async (req, res, next) => {
   try {
     const results = await service.getAll();
     res.status(200).json(results);
+
   } catch (error) {
     console.error(error.message);
     next(error);
@@ -29,6 +30,7 @@ const addContact = async (req, res, next) => {
       return res.status(400).json({ message: "Missing required name field" });
     const result = await service.createContact(req.body);
     if (!result)
+
       return res.status(400).json({ message: "Something goes wrong" });
     if (result)
       return res.json({
@@ -36,6 +38,7 @@ const addContact = async (req, res, next) => {
         code: 201,
         data: { result },
       });
+
   } catch (error) {
     console.error(error.message);
     next(error);
@@ -76,6 +79,7 @@ const updateStatus = async (req, res, next) => {
         code: 200,
         data: { result },
       });
+
   } catch (error) {
     console.error(error.message);
     next(error);

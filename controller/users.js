@@ -125,4 +125,4 @@ module.exports = {
   current,
   updateSub,
   updateAvatar,
-};
+

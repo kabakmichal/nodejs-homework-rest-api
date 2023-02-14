@@ -13,8 +13,9 @@ const userSchema = joi.object({
   token: joi.string(),
 });
 
-const validator = (schema) => (body) =>
-  schema.validate(body, { abortEarly: false });
+const validator = (schema) => (body) => {
+  return schema.validate(body, { abortEarly: false });
+};
 
 const contactValidate = validator(contactSchema);
 const userValidate = validator(userSchema);

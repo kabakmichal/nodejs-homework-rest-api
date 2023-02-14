@@ -8,8 +8,9 @@ const contactSchema = joi.object({
   favorite: joi.boolean(),
 });
 
-const validator = (schema) => (body) =>
-  schema.validate(body, { abortEarly: false });
+const validator = (schema) => (body) => {
+  return schema.validate(body, { abortEarly: false });
+};
 
 const contactValidate = validator(contactSchema);
 

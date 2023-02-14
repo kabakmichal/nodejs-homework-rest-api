@@ -1,5 +1,8 @@
 const app = require("./app");
 const mongoose = require("mongoose");
+const { createFolderNotExisting } = require("./utils/makeFolders.js");
+const { tmpDir, avatarDir } = require("./middlewares/upload.js");
+
 
 require("dotenv").config();
 
@@ -17,6 +20,7 @@ connection
     app.listen(3000, () => {
       console.log("\nDatabase connection successful.");
       console.log("Use our API on port: 3000");
+
     });
   })
   .catch((error) => {

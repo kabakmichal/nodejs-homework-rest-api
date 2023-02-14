@@ -1,4 +1,4 @@
-const service = require("../service/contact.js");
+const service = require("../service/contacts.js");
 const { paginate } = require("../utils/pagination.js");
 const { Contact } = require("../service/schemas/contact.js");
 

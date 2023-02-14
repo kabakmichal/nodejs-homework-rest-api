@@ -20,6 +20,12 @@ app.use(
   express.static(path.join(process.cwd(), "public", "avatars"))
 );
 
+app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  "/avatars",
+  express.static(path.join(process.cwd(), "public", "avatars"))
+);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/users", usersRouter);
 

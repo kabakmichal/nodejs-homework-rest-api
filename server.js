@@ -6,10 +6,9 @@ const { tmpDir, avatarDir } = require("./middlewares/upload.js");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
 const uriDb = process.env.MONGO_URI;
 
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 
 const connection = mongoose.connect(uriDb, {
   useNewUrlParser: true,
@@ -18,16 +17,19 @@ const connection = mongoose.connect(uriDb, {
 
 connection
   .then(() => {
-
-    app.listen(PORT, async () => {
-      await createFolderNotExisting(tmpDir);
-      await createFolderNotExisting(avatarDir);
+    app.listen(3000, () => {
       console.log("\nDatabase connection successful.");
-      console.log(`Use our API on port: ${PORT}\n`);
+      console.log("Use our API on port: 3000");
+
     });
   })
-  .catch((err) => {
-    console.log(`Server not running. Error message: ${err.message}`);
+  .catch((error) => {
+    console.log(`Server not running. Error message: ${error.message}`);
     process.exit(1);
   });
 
+function signalHandler() {
+  mongoose.disconnect();
+  console.log("\nDatabase disconnected\n");
+}
+process.on("SIGINT", signalHandler); ///// DDD
